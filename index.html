@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#667eea">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Chioma - Your Trusted Educational & Travel Consultant</title>
+    <meta name="description" content="Professional educational consulting, visa processing, flight booking, accommodation, and appointment assistance services.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+        
+        html {
+            overflow-x: hidden; /* Prevent horizontal scroll - safe for desktop */
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        
+        body {
+            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll - safe for desktop */
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Additional mobile constraints */
+        @media (max-width: 768px) {
+            html, body {
+                width: 100%;
+                max-width: 100vw;
+            }
+        }
+        
+        /* Ensure all containers respect viewport - only prevent horizontal overflow */
+        .container {
+            box-sizing: border-box;
+        }
+        
+        section {
+            box-sizing: border-box;
+        }
+        
+        /* Only apply strict constraints on mobile */
+        @media (max-width: 768px) {
+            section {
+                max-width: 100vw;
+                overflow-x: hidden;
+            }
+        }
+        
+        /* Prevent text overflow - only break words when needed */
+        p, h1, h2, h3, h4, h5, h6, span, a, li {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        /* Better touch targets */
+        a, button, input, select, textarea {
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        /* Improve tap highlight */
+        * {
+            -webkit-tap-highlight-color: rgba(102, 126, 234, 0.2);
+        }
+        
+        /* Animated Gradient Background */
+        .gradient-bg {
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Animated Particles Background */
+        .particles {
+            position: absolute;
+            width: 100%;
+            max-width: 100vw;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float-particle 20s infinite;
+        }
+        
+        @keyframes float-particle {
+            0%, 100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Service Cards Enhanced */
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .service-card:hover::before {
+            left: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            transition: all 0.4s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        /* Navigation Enhanced */
+        .nav-blur {
+            backdrop-filter: blur(20px);
+            background-color: rgba(255, 255, 255, 0.85);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(5deg);
+            }
+        }
+        
+        .float-animation {
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            max-width: 100vw;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+        
+        /* Section Padding */
+        .section-padding {
+            padding: 6rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 3rem 0;
+            }
+            
+            /* Mobile Hero */
+            .hero-image {
+                margin-top: 2rem;
+            }
+            
+            /* Mobile Service Cards */
+            .service-card {
+                margin-bottom: 1.5rem;
+            }
+            
+            .service-card:hover {
+                transform: translateY(-5px) scale(1.01);
+            }
+            
+            /* Mobile Buttons */
+            .btn-glow {
+                min-height: 48px; /* Better touch target */
+            }
+            
+            /* Mobile Forms */
+            .form-input {
+                font-size: 16px; /* Prevents zoom on iOS */
+                min-height: 48px;
+            }
+            
+            /* Mobile Navigation */
+            #mobile-menu {
+                animation: slideDown 0.3s ease;
+            }
+            
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            /* Mobile Stats Grid */
+            .stat-number {
+                font-size: 2.5rem !important;
+            }
+            
+            /* Mobile Process Images */
+            .process-image {
+                height: 120px;
+            }
+            
+            /* Mobile Contact Image */
+            .contact-image {
+                margin-bottom: 1.5rem;
+            }
+            
+            /* Disable hover effects on mobile */
+            .service-card:hover,
+            .testimonial-card:hover {
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .section-padding {
+                padding: 2.5rem 0;
+            }
+            /* Smaller padding on very small screens */
+            .container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+                max-width: 100% !important;
+            }
+            
+            /* Prevent any element from exceeding viewport */
+            img {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+            
+            /* Fix particles on mobile */
+            .particles {
+                width: 100vw;
+                max-width: 100vw;
+            }
+        }
+        
+        /* Additional mobile overflow prevention */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+                max-width: 100% !important;
+            }
+            
+            /* Ensure grid items don't overflow */
+            .grid {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            /* Fix any potential overflow from flex containers */
+            .flex {
+                max-width: 100%;
+            }
+            
+            /* Ensure buttons don't overflow */
+            button, a.btn-glow {
+                max-width: 100%;
+            }
+        }
+        
+        /* Testimonial Cards */
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Process Steps */
+        .process-step {
+            position: relative;
+        }
+        
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            z-index: 0;
+        }
+        
+        .process-step:last-child::after {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .process-step::after {
+                display: none;
+            }
+        }
+        
+        /* Button Glow Effect */
+        .btn-glow {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-glow:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Stats Counter Animation */
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+        
+        /* Form Input Focus */
+        .form-input:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+        }
+        
+        /* Hero Text Animation */
+        .hero-text {
+            background: linear-gradient(45deg, #fff, #f0f0f0, #fff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+        }
+        
+        @keyframes shimmer {
+            to {
+                background-position: 200% center;
+            }
+        }
+        
+        /* Image Styles */
+        .hero-image {
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+        }
+        
+        .hero-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .service-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+            max-width: 100%;
+        }
+        
+        .testimonial-image {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image {
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+        }
+        
+        .about-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .process-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            max-width: 100%;
+        }
+        
+        .contact-image {
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+        }
+        
+        /* Image loading optimization */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .image-overlay {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-overlay::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .image-overlay:hover::after {
+            opacity: 1;
+        }
+        
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            max-width: 100vw;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s, visibility 0.5s;
+            overflow: hidden;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        
+        /* Prevent scrolling while loader is active */
+        body.loading {
+            overflow: hidden !important;
+            height: 100vh;
+            position: fixed;
+            width: 100%;
+        }
+        
+        html.loading {
+            overflow: hidden !important;
+            height: 100vh;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="spinner"></div>
+    </div>
+    
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 nav-blur shadow-sm" id="navbar" data-aos="fade-down">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-3xl font-bold gradient-text">Chioma</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-purple-600 transition-colors font-medium relative group">
+                        Home
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#services" class="text-gray-700 hover:text-purple-600 transition-colors font-medium relative group">
+                        Services
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#process" class="text-gray-700 hover:text-purple-600 transition-colors font-medium relative group">
+                        Process
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-purple-600 transition-colors font-medium relative group">
+                        Testimonials
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="text-gray-700 hover:text-purple-600 transition-colors font-medium relative group">
+                        Contact
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+                    </a>
+                </div>
+                <button class="md:hidden p-2 -mr-2" id="mobile-menu-btn" aria-label="Toggle menu">
+                    <i data-lucide="menu" class="w-6 h-6 text-gray-700"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="hidden md:hidden mt-3 space-y-1 bg-white rounded-2xl shadow-lg px-4 py-3" id="mobile-menu">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-purple-600 transition-colors font-medium">Home</a>
+                <a href="#services" class="block py-2 text-gray-700 hover:text-purple-600 transition-colors font-medium">Services</a>
+                <a href="#process" class="block py-2 text-gray-700 hover:text-purple-600 transition-colors font-medium">Process</a>
+                <a href="#testimonials" class="block py-2 text-gray-700 hover:text-purple-600 transition-colors font-medium">Testimonials</a>
+                <a href="#contact" class="block py-2 text-gray-700 hover:text-purple-600 transition-colors font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg md:min-h-screen flex items-start md:items-center justify-center text-white section-padding mt-14 md:mt-16 relative overflow-hidden">
+        <div class="particles" id="particles"></div>
+        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start md:items-center">
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <div class="inline-block mb-4 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-sm font-semibold" data-aos="fade-up" data-aos-delay="200">
+                        ✨ Trusted by 500+ Clients Worldwide
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight hero-text text-center md:text-left">
+                        Your Journey<br/>
+                        <span class="gradient-text" style="-webkit-text-fill-color: white;">Starts Here</span>
+                    </h1>
+                    <p class="text-base sm:text-lg md:text-2xl mb-8 text-gray-100 leading-relaxed text-center md:text-left" data-aos="fade-up" data-aos-delay="300">
+                        Expert guidance for education, visas, travel, and beyond. We make your dreams accessible with personalized service and proven results.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 items-center sm:items-stretch" data-aos="fade-up" data-aos-delay="400">
+                        <a href="#services" class="btn-glow bg-white text-purple-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-2xl text-center relative overflow-hidden w-full sm:w-auto">
+                            <span class="relative z-10">Explore Services</span>
+                        </a>
+                        <a href="#contact" class="btn-glow bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-purple-600 transition-all transform hover:scale-105 text-center relative overflow-hidden w-full sm:w-auto">
+                            <span class="relative z-10">Get Started</span>
+                        </a>
+                    </div>
+                    <div class="mt-8 sm:mt-10 flex flex-wrap items-center gap-6 sm:gap-8 justify-center md:justify-start" data-aos="fade-up" data-aos-delay="500">
+                        <div>
+                            <div class="text-3xl font-bold">98%</div>
+                            <div class="text-sm text-gray-200">Success Rate</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold">500+</div>
+                            <div class="text-sm text-gray-200">Happy Clients</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold">50+</div>
+                            <div class="text-sm text-gray-200">Countries</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="float-animation hidden md:block" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-3xl blur-3xl opacity-50"></div>
+                        <div class="relative image-overlay">
+                            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop" 
+                                 alt="Students studying and traveling" 
+                                 class="hero-image w-full h-auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding bg-white relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 sm:mb-16" data-aos="fade-up">
+                <div class="inline-block mb-4 px-4 py-2 bg-purple-100 text-purple-600 rounded-full text-sm font-semibold">
+                    Our Services
+                </div>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 sm:mb-6 gradient-text">What We Offer</h2>
+                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Comprehensive solutions designed to make your educational and travel journey seamless, stress-free, and successful
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Educational Consultant -->
+                <div class="service-card bg-gradient-to-br from-purple-50 via-indigo-50 to-purple-50 rounded-3xl p-0 shadow-xl border border-purple-100 overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=400&fit=crop" 
+                         alt="Educational consulting" 
+                         class="service-image"
+                         loading="lazy">
+                    <div class="p-8">
+                        <div class="service-icon bg-gradient-to-br from-purple-500 to-indigo-600 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                            <i data-lucide="graduation-cap" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Educational Consultant</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Expert guidance on course selection, university applications, and academic pathways tailored to your career goals and aspirations.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-purple-600"></i>
+                            University selection
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-purple-600"></i>
+                            Application assistance
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-purple-600"></i>
+                            Scholarship guidance
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+
+                <!-- Visa Processing -->
+                <div class="service-card bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-50 rounded-3xl p-0 shadow-xl border border-blue-100 overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop" 
+                         alt="Visa processing" 
+                         class="service-image"
+                         loading="lazy">
+                    <div class="p-8">
+                        <div class="service-icon bg-gradient-to-br from-blue-500 to-cyan-600 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                            <i data-lucide="file-check" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Visa Processing</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            Streamlined visa application assistance with comprehensive document preparation, submission support, and dedicated follow-up services.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-500">
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-blue-600"></i>
+                                Document preparation
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-blue-600"></i>
+                                Application submission
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-blue-600"></i>
+                                Status tracking
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Flight Booking -->
+                <div class="service-card bg-gradient-to-br from-green-50 via-emerald-50 to-green-50 rounded-3xl p-0 shadow-xl border border-green-100 overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&h=400&fit=crop" 
+                         alt="Flight booking" 
+                         class="service-image"
+                         loading="lazy">
+                    <div class="p-8">
+                        <div class="service-icon bg-gradient-to-br from-green-500 to-emerald-600 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                            <i data-lucide="plane" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Flight Booking</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            Best deals on international flights with flexible options, comprehensive travel insurance, and round-the-clock support for your journey.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-500">
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
+                                Best price guarantee
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
+                                Flexible dates
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
+                                Travel insurance
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Accommodation Booking -->
+                <div class="service-card bg-gradient-to-br from-orange-50 via-amber-50 to-orange-50 rounded-3xl p-0 shadow-xl border border-orange-100 overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600&h=400&fit=crop" 
+                         alt="Accommodation booking" 
+                         class="service-image"
+                         loading="lazy">
+                    <div class="p-8">
+                        <div class="service-icon bg-gradient-to-br from-orange-500 to-amber-600 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                            <i data-lucide="home" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Accommodation Booking</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            Find the perfect place to stay with verified listings, student-friendly options, and convenient locations near your institution.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-500">
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-orange-600"></i>
+                                Verified properties
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-orange-600"></i>
+                                Student discounts
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-orange-600"></i>
+                                Prime locations
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Appointment Date Search -->
+                <div class="service-card bg-gradient-to-br from-pink-50 via-rose-50 to-pink-50 rounded-3xl p-0 shadow-xl border border-pink-100 overflow-hidden" data-aos="fade-up" data-aos-delay="500">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop" 
+                         alt="Appointment scheduling" 
+                         class="service-image"
+                         loading="lazy">
+                    <div class="p-8">
+                        <div class="service-icon bg-gradient-to-br from-pink-500 to-rose-600 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                            <i data-lucide="calendar-search" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Appointment Date Search</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            We continuously monitor and help you secure the earliest available appointment dates for embassies and consulates worldwide.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-500">
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-pink-600"></i>
+                                Real-time monitoring
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-pink-600"></i>
+                                Instant notifications
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-pink-600"></i>
+                                Priority booking
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 24/7 Support -->
+                <div class="service-card bg-gradient-to-br from-indigo-50 via-purple-50 to-indigo-50 rounded-3xl p-0 shadow-xl border border-indigo-100 overflow-hidden" data-aos="fade-up" data-aos-delay="600">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=400&fit=crop" 
+                         alt="Customer support" 
+                         class="service-image"
+                         loading="lazy">
+                    <div class="p-8">
+                        <div class="service-icon bg-gradient-to-br from-indigo-500 to-purple-600 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                            <i data-lucide="headphones" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">24/7 Support</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            Round-the-clock assistance for all your queries and concerns throughout your entire journey, whenever you need us.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-500">
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-indigo-600"></i>
+                                Always available
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-indigo-600"></i>
+                                Multi-language support
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-indigo-600"></i>
+                                Quick response
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="section-padding bg-gradient-to-br from-gray-50 via-purple-50 to-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <div class="inline-block mb-4 px-4 py-2 bg-purple-100 text-purple-600 rounded-full text-sm font-semibold">
+                    How It Works
+                </div>
+                <h2 class="text-5xl md:text-6xl font-extrabold mb-6 gradient-text">Simple Process</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Our streamlined process ensures a smooth and efficient experience from start to finish
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8 relative">
+                <div class="process-step text-center" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&h=300&fit=crop" 
+                         alt="Consultation" 
+                         class="process-image mb-4"
+                         loading="lazy">
+                    <div class="bg-gradient-to-br from-purple-500 to-indigo-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl relative z-10">
+                        <span class="text-3xl font-bold text-white">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Consultation</h3>
+                    <p class="text-gray-600">Free initial consultation to understand your needs and goals</p>
+                </div>
+                
+                <div class="process-step text-center" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop" 
+                         alt="Planning" 
+                         class="process-image mb-4"
+                         loading="lazy">
+                    <div class="bg-gradient-to-br from-blue-500 to-cyan-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl relative z-10">
+                        <span class="text-3xl font-bold text-white">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Planning</h3>
+                    <p class="text-gray-600">Customized plan tailored to your specific requirements</p>
+                </div>
+                
+                <div class="process-step text-center" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop" 
+                         alt="Execution" 
+                         class="process-image mb-4"
+                         loading="lazy">
+                    <div class="bg-gradient-to-br from-green-500 to-emerald-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl relative z-10">
+                        <span class="text-3xl font-bold text-white">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Execution</h3>
+                    <p class="text-gray-600">We handle all the paperwork and processes for you</p>
+                </div>
+                
+                <div class="process-step text-center" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400&h=300&fit=crop" 
+                         alt="Success" 
+                         class="process-image mb-4"
+                         loading="lazy">
+                    <div class="bg-gradient-to-br from-orange-500 to-amber-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl relative z-10">
+                        <span class="text-3xl font-bold text-white">4</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Success</h3>
+                    <p class="text-gray-600">Celebrate your achievement with ongoing support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section-padding bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <div class="inline-block mb-4 px-4 py-2 bg-purple-100 text-purple-600 rounded-full text-sm font-semibold">
+                    Testimonials
+                </div>
+                <h2 class="text-5xl md:text-6xl font-extrabold mb-6 gradient-text">What Our Clients Say</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Don't just take our word for it - hear from our satisfied clients
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card bg-gradient-to-br from-purple-50 to-indigo-50 rounded-3xl p-8 shadow-lg border border-purple-100" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center gap-1 mb-4 text-yellow-400">
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 leading-relaxed italic">
+                        "Chioma made my visa process so smooth! Their team was professional, responsive, and helped me every step of the way. Highly recommended!"
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" 
+                             alt="Aisha Suleiman" 
+                             class="testimonial-image"
+                             loading="lazy">
+                        <div>
+                            <div class="font-bold text-gray-800">Aisha Suleiman</div>
+                            <div class="text-sm text-gray-500">Student, Canada</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 shadow-lg border border-blue-100" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center gap-1 mb-4 text-yellow-400">
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 leading-relaxed italic">
+                        "The educational consulting service was outstanding! They helped me find the perfect university and secure a scholarship. Thank you!"
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" 
+                             alt="James Okafor" 
+                             class="testimonial-image"
+                             loading="lazy">
+                        <div>
+                            <div class="font-bold text-gray-800">James Okafor</div>
+                            <div class="text-sm text-gray-500">Student, UK</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card bg-gradient-to-br from-green-50 to-emerald-50 rounded-3xl p-8 shadow-lg border border-green-100" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center gap-1 mb-4 text-yellow-400">
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 leading-relaxed italic">
+                        "From flight booking to accommodation, everything was handled perfectly. The 24/7 support is amazing. Best service ever!"
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" 
+                             alt="Maryam Kano" 
+                             class="testimonial-image"
+                             loading="lazy">
+                        <div>
+                            <div class="font-bold text-gray-800">Maryam Kano</div>
+                            <div class="text-sm text-gray-500">Student, Australia</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About/Why Choose Us Section -->
+    <section id="about" class="section-padding bg-gradient-to-br from-gray-50 via-purple-50 to-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right" class="order-2 md:order-1">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop" 
+                         alt="Team collaboration" 
+                         class="about-image w-full h-auto"
+                         loading="lazy">
+                </div>
+                <div data-aos="fade-left" class="order-1 md:order-2">
+                    <div class="inline-block mb-4 px-4 py-2 bg-purple-100 text-purple-600 rounded-full text-sm font-semibold">
+                        Why Choose Us
+                    </div>
+                    <h2 class="text-5xl md:text-6xl font-extrabold mb-6 gradient-text">Your Success is Our Mission</h2>
+                    <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                        With years of experience in educational consulting and travel services, we understand the challenges you face. Our team is dedicated to making your journey as smooth and stress-free as possible.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4" data-aos="fade-up" data-aos-delay="100">
+                            <div class="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl p-4 shadow-lg">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2 text-gray-800">Expert Team</h4>
+                                <p class="text-gray-600">Certified consultants with extensive knowledge and years of experience in the field</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4" data-aos="fade-up" data-aos-delay="200">
+                            <div class="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl p-4 shadow-lg">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2 text-gray-800">Fast Processing</h4>
+                                <p class="text-gray-600">Efficient handling of all applications and bookings with quick turnaround times</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4" data-aos="fade-up" data-aos-delay="300">
+                            <div class="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-4 shadow-lg">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2 text-gray-800">Personalized Service</h4>
+                                <p class="text-gray-600">Tailored solutions that fit your unique needs, goals, and circumstances</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4" data-aos="fade-up" data-aos-delay="400">
+                            <div class="bg-gradient-to-br from-orange-500 to-amber-600 rounded-2xl p-4 shadow-lg">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2 text-gray-800">Transparent Pricing</h4>
+                                <p class="text-gray-600">No hidden fees, clear and upfront pricing for all services with no surprises</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6 mt-8">
+                        <div class="bg-white rounded-3xl p-8 shadow-xl text-center border border-purple-100 transform hover:scale-105 transition-all" data-aos="fade-up" data-aos-delay="500">
+                            <div class="text-5xl font-extrabold gradient-text mb-3 stat-number">500+</div>
+                            <div class="text-gray-600 font-medium">Happy Clients</div>
+                        </div>
+                        <div class="bg-white rounded-3xl p-8 shadow-xl text-center border border-blue-100 transform hover:scale-105 transition-all" data-aos="fade-up" data-aos-delay="600">
+                            <div class="text-5xl font-extrabold gradient-text mb-3 stat-number">98%</div>
+                            <div class="text-gray-600 font-medium">Success Rate</div>
+                        </div>
+                        <div class="bg-white rounded-3xl p-8 shadow-xl text-center border border-green-100 transform hover:scale-105 transition-all" data-aos="fade-up" data-aos-delay="700">
+                            <div class="text-5xl font-extrabold gradient-text mb-3 stat-number">50+</div>
+                            <div class="text-gray-600 font-medium">Countries</div>
+                        </div>
+                        <div class="bg-white rounded-3xl p-8 shadow-xl text-center border border-orange-100 transform hover:scale-105 transition-all" data-aos="fade-up" data-aos-delay="800">
+                            <div class="text-5xl font-extrabold gradient-text mb-3 stat-number">24/7</div>
+                            <div class="text-gray-600 font-medium">Support</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <div class="inline-block mb-4 px-4 py-2 bg-purple-100 text-purple-600 rounded-full text-sm font-semibold">
+                        Get In Touch
+                    </div>
+                    <h2 class="text-5xl md:text-6xl font-extrabold mb-6 gradient-text">Start Your Journey Today</h2>
+                    <p class="text-xl text-gray-600 leading-relaxed">
+                        Ready to start your journey? Contact us today for a free consultation and let's make your dreams a reality
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="space-y-6" data-aos="fade-right">
+                        <div class="mb-6">
+                            <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=600&h=400&fit=crop" 
+                                 alt="Contact us" 
+                                 class="contact-image w-full h-auto"
+                                 loading="lazy">
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-3xl p-8 border border-purple-100 shadow-lg hover:shadow-xl transition-shadow">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl p-4 shadow-lg">
+                                    <i data-lucide="mail" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-800">Email</h4>
+                                    <p class="text-gray-600">info@chioma.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 border border-blue-100 shadow-lg hover:shadow-xl transition-shadow">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl p-4 shadow-lg">
+                                    <i data-lucide="phone" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-800">Phone</h4>
+                                    <p class="text-gray-600">+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-3xl p-8 border border-green-100 shadow-lg hover:shadow-xl transition-shadow">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-4 shadow-lg">
+                                    <i data-lucide="map-pin" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-800">Location</h4>
+                                    <p class="text-gray-600">Available Worldwide</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-3xl p-8 border border-orange-100 shadow-lg hover:shadow-xl transition-shadow">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="bg-gradient-to-br from-orange-500 to-amber-600 rounded-2xl p-4 shadow-lg">
+                                    <i data-lucide="clock" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-800">Business Hours</h4>
+                                    <p class="text-gray-600">24/7 Available</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="space-y-6" data-aos="fade-left" id="contact-form">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Your Name</label>
+                            <input type="text" required placeholder="John Doe" class="form-input w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Your Email</label>
+                            <input type="email" required placeholder="john@example.com" class="form-input w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" placeholder="+1 (555) 123-4567" class="form-input w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Service Interested In</label>
+                            <select class="form-input w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-all">
+                                <option>Educational Consulting</option>
+                                <option>Visa Processing</option>
+                                <option>Flight Booking</option>
+                                <option>Accommodation Booking</option>
+                                <option>Appointment Date Search</option>
+                                <option>Multiple Services</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Your Message</label>
+                            <textarea placeholder="Tell us about your needs..." rows="5" required class="form-input w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-all resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="btn-glow w-full gradient-bg text-white px-8 py-5 rounded-xl font-bold hover:opacity-90 transition-all transform hover:scale-105 shadow-2xl relative overflow-hidden">
+                            <span class="relative z-10">Send Message</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <h3 class="text-3xl font-bold mb-4 gradient-text" style="-webkit-text-fill-color: white;">Chioma</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Your trusted partner for educational consulting and travel services. Making dreams accessible, one journey at a time.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="bg-gray-800 p-3 rounded-xl hover:bg-gradient-to-br hover:from-purple-600 hover:to-indigo-600 transition-all transform hover:scale-110">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-3 rounded-xl hover:bg-gradient-to-br hover:from-blue-500 hover:to-cyan-500 transition-all transform hover:scale-110">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-3 rounded-xl hover:bg-gradient-to-br hover:from-pink-500 hover:to-rose-500 transition-all transform hover:scale-110">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-3 rounded-xl hover:bg-gradient-to-br hover:from-blue-600 hover:to-blue-700 transition-all transform hover:scale-110">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#home" class="hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> Home</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> Services</a></li>
+                        <li><a href="#process" class="hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> Process</a></li>
+                        <li><a href="#testimonials" class="hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> Testimonials</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors flex items-center gap-2"><i data-lucide="chevron-right" class="w-4 h-4"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Services</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#services" class="hover:text-white transition-colors flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Educational Consulting</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Visa Processing</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Flight Booking</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Accommodation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to get updates and special offers</p>
+                    <form class="space-y-3">
+                        <input type="email" placeholder="Your email" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-purple-500 transition-colors">
+                        <button type="submit" class="w-full gradient-bg text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-all">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Chioma. All rights reserved. | Designed with ❤️ for your success</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1200,
+            once: true,
+            offset: 100,
+            easing: 'ease-out-cubic'
+        });
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Loading Screen - Prevent scrolling during load
+        document.documentElement.classList.add('loading');
+        document.body.classList.add('loading');
+        
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                if (loader) {
+                    loader.classList.add('hidden');
+                }
+                // Remove loading class to allow scrolling
+                document.documentElement.classList.remove('loading');
+                document.body.classList.remove('loading');
+            }, 500);
+        });
+        
+        // Fallback: Remove loading class after max 3 seconds
+        setTimeout(() => {
+            document.documentElement.classList.remove('loading');
+            document.body.classList.remove('loading');
+            const loader = document.getElementById('loader');
+            if (loader && !loader.classList.contains('hidden')) {
+                loader.classList.add('hidden');
+            }
+        }, 3000);
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scroll-progress');
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.setAttribute('data-lucide', 'menu');
+            } else {
+                icon.setAttribute('data-lucide', 'x');
+            }
+            lucide.createIcons();
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Animated Particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 5 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const button = form.querySelector('button[type="submit"]');
+            const originalText = button.innerHTML;
+            
+            button.innerHTML = '<span class="relative z-10">Sending...</span>';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.innerHTML = '<span class="relative z-10">✓ Message Sent!</span>';
+                button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                
+                setTimeout(() => {
+                    form.reset();
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    button.style.background = '';
+                    alert('Thank you for your message! We will get back to you soon.');
+                }, 2000);
+            }, 1500);
+        });
+
+        // Newsletter form
+        document.querySelector('footer form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for subscribing!');
+            e.target.reset();
+        });
+
+        // Counter Animation for Stats
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target + (element.textContent.includes('%') ? '%' : element.textContent.includes('+') ? '+' : '');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start) + (element.textContent.includes('%') ? '%' : element.textContent.includes('+') ? '+' : '');
+                }
+            }, 16);
+        }
+
+        // Intersection Observer for Stats
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const text = stat.textContent;
+                        const number = parseInt(text.replace(/\D/g, ''));
+                        if (number && !stat.dataset.animated) {
+                            stat.dataset.animated = 'true';
+                            animateCounter(stat, number);
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('#about .stat-number').forEach(stat => {
+            statsObserver.observe(stat.closest('.grid'));
+        });
+
+        // Re-initialize Lucide icons periodically
+        setInterval(() => {
+            lucide.createIcons();
+        }, 2000);
+    </script>
+</body>
+</html>
+
