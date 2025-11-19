@@ -622,9 +622,14 @@
     <!-- Hero Section -->
     <section id="home" class="gradient-bg md:min-h-screen flex items-start md:items-center justify-center text-white section-padding mt-14 md:mt-16 relative overflow-hidden">
         <div class="particles" id="particles"></div>
+        <!-- Background Image for Mobile -->
+        <div class="absolute inset-0 md:hidden opacity-30" 
+             style="background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop'); background-size: cover; background-position: center; background-repeat: no-repeat; z-index: 1;">
+            <div class="absolute inset-0 bg-gradient-to-r from-purple-600/60 via-purple-500/50 to-pink-500/60"></div>
+        </div>
         <div class="container mx-auto px-4 sm:px-6 relative z-10">
             <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start md:items-center">
-                <div data-aos="fade-right" data-aos-duration="1000">
+                <div data-aos="fade-right" data-aos-duration="1000" class="relative z-10">
                     <div class="inline-block mb-4 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-sm font-semibold" data-aos="fade-up" data-aos-delay="200">
                         ✨ Trusted by 500+ Clients Worldwide
                     </div>
@@ -658,15 +663,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="float-animation hidden md:block" data-aos="fade-left" data-aos-duration="1000">
-                    <div class="relative">
-                        <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-3xl blur-3xl opacity-50"></div>
-                        <div class="relative image-overlay">
-                            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop" 
-                                 alt="Students studying and traveling" 
-                                 class="hero-image w-full h-auto">
-                        </div>
-                    </div>
+                <!-- Background Image for Desktop -->
+                <div class="hidden md:block float-animation relative min-h-[500px] rounded-3xl overflow-hidden shadow-2xl" 
+                     style="background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop'); background-size: cover; background-position: center; background-repeat: no-repeat;"
+                     data-aos="fade-left" data-aos-duration="1000"
+                     aria-label="Students studying and traveling">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-purple-500/10 to-pink-500/20"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
                 </div>
             </div>
         </div>
