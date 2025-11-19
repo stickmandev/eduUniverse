@@ -21,7 +21,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -496,6 +496,20 @@
             display: block;
         }
         
+        /* Hero Image Improvements */
+        #home img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        /* Ensure images don't break layout */
+        .hero-modern img {
+            display: block;
+            max-width: 100%;
+        }
+        
         .image-overlay {
             position: relative;
             overflow: hidden;
@@ -565,6 +579,362 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+        
+        /* ===== MODERN DESIGN IMPROVEMENTS ===== */
+        
+        /* Glassmorphism Effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Modern Card Styles */
+        .modern-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .modern-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .modern-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .modern-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* Enhanced Gradient Text */
+        .gradient-text-modern {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #667eea 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientText 3s linear infinite;
+        }
+        
+        @keyframes gradientText {
+            to {
+                background-position: 200% center;
+            }
+        }
+        
+        /* Modern Button Styles */
+        .btn-modern {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-modern:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Floating Animation Enhanced */
+        @keyframes floatEnhanced {
+            0%, 100% {
+                transform: translateY(0px) translateX(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px) rotate(2deg);
+            }
+            50% {
+                transform: translateY(-30px) translateX(-10px) rotate(-2deg);
+            }
+            75% {
+                transform: translateY(-20px) translateX(5px) rotate(1deg);
+            }
+        }
+        
+        .float-enhanced {
+            animation: floatEnhanced 8s ease-in-out infinite;
+        }
+        
+        /* Number Badge */
+        .number-badge {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            z-index: 10;
+        }
+        
+        /* Stats Card Modern */
+        .stat-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 20px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        /* Section Divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.3), transparent);
+            margin: 80px 0;
+        }
+        
+        /* Modern Navigation */
+        .nav-modern {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-modern.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Mobile Menu Drawer */
+        .mobile-menu-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: white;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 80px 24px 24px;
+        }
+        
+        .mobile-menu-drawer.open {
+            right: 0;
+        }
+        
+        /* Hero Section Modern */
+        .hero-modern {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-modern::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Text Reveal Animation */
+        .text-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .text-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Service Icon Modern */
+        .service-icon-modern {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        
+        .service-icon-modern::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s ease;
+            filter: blur(8px);
+        }
+        
+        .service-card:hover .service-icon-modern::after {
+            opacity: 0.3;
+        }
+        
+        .service-card:hover .service-icon-modern {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        /* Process Step Modern */
+        .process-step-modern {
+            position: relative;
+            text-align: center;
+        }
+        
+        .process-step-modern::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            z-index: 0;
+        }
+        
+        .process-step-modern:first-child::before {
+            display: none;
+        }
+        
+        /* Testimonial Card Modern */
+        .testimonial-modern {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .testimonial-modern::before {
+            content: '"';
+            position: absolute;
+            top: 16px;
+            left: 24px;
+            font-size: 80px;
+            color: rgba(102, 126, 234, 0.1);
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+        
+        .testimonial-modern:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        /* Contact Form Modern */
+        .form-input-modern {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 16px 20px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+        
+        .form-input-modern:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+        }
+        
+        .scroll-indicator::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 2px;
+            animation: scrollDown 2s infinite;
+        }
+        
+        @keyframes scrollDown {
+            0%, 100% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                opacity: 0.3;
+                transform: translateX(-50%) translateY(12px);
+            }
+        }
+        
+        /* Responsive Typography */
+        @media (max-width: 768px) {
+            .hero-modern::before {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -578,298 +948,423 @@
     <div class="scroll-progress" id="scroll-progress"></div>
     
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 nav-blur shadow-sm" id="navbar" data-aos="fade-down">
-        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+    <nav class="fixed top-0 w-full z-50 nav-modern" id="navbar" data-aos="fade-down">
+        <div class="container mx-auto px-4 sm:px-6 py-4">
             <div class="flex items-center justify-between">
-                <div class="text-3xl font-bold gradient-text">Chioma</div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-gray-700 hover:text-purple-600 transition-colors font-medium relative group">
+                <div class="text-3xl font-bold gradient-text-modern">Chioma</div>
+                <div class="hidden md:flex space-x-1">
+                    <a href="#home" class="px-4 py-2 text-gray-700 hover:text-purple-600 transition-all font-medium rounded-lg hover:bg-purple-50 relative group">
                         Home
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-500 transition-all group-hover:w-full rounded-full"></span>
                     </a>
-                    <a href="#services" class="text-gray-700 hover:text-purple-600 transition-colors font-medium relative group">
+                    <a href="#services" class="px-4 py-2 text-gray-700 hover:text-purple-600 transition-all font-medium rounded-lg hover:bg-purple-50 relative group">
                         Services
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-500 transition-all group-hover:w-full rounded-full"></span>
                     </a>
-                    <a href="#process" class="text-gray-700 hover:text-purple-600 transition-colors font-medium relative group">
+                    <a href="#process" class="px-4 py-2 text-gray-700 hover:text-purple-600 transition-all font-medium rounded-lg hover:bg-purple-50 relative group">
                         Process
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-500 transition-all group-hover:w-full rounded-full"></span>
                     </a>
-                    <a href="#testimonials" class="text-gray-700 hover:text-purple-600 transition-colors font-medium relative group">
+                    <a href="#testimonials" class="px-4 py-2 text-gray-700 hover:text-purple-600 transition-all font-medium rounded-lg hover:bg-purple-50 relative group">
                         Testimonials
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-500 transition-all group-hover:w-full rounded-full"></span>
                     </a>
-                    <a href="#contact" class="text-gray-700 hover:text-purple-600 transition-colors font-medium relative group">
+                    <a href="#contact" class="px-4 py-2 text-gray-700 hover:text-purple-600 transition-all font-medium rounded-lg hover:bg-purple-50 relative group">
                         Contact
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-500 transition-all group-hover:w-full rounded-full"></span>
                     </a>
                 </div>
                 <button class="md:hidden p-2 -mr-2" id="mobile-menu-btn" aria-label="Toggle menu">
                     <i data-lucide="menu" class="w-6 h-6 text-gray-700"></i>
                 </button>
             </div>
-            <!-- Mobile Menu -->
-            <div class="hidden md:hidden mt-3 space-y-1 bg-white rounded-2xl shadow-lg px-4 py-3" id="mobile-menu">
-                <a href="#home" class="block py-2 text-gray-700 hover:text-purple-600 transition-colors font-medium">Home</a>
-                <a href="#services" class="block py-2 text-gray-700 hover:text-purple-600 transition-colors font-medium">Services</a>
-                <a href="#process" class="block py-2 text-gray-700 hover:text-purple-600 transition-colors font-medium">Process</a>
-                <a href="#testimonials" class="block py-2 text-gray-700 hover:text-purple-600 transition-colors font-medium">Testimonials</a>
-                <a href="#contact" class="block py-2 text-gray-700 hover:text-purple-600 transition-colors font-medium">Contact</a>
+        </div>
+        <!-- Mobile Menu Drawer -->
+        <div class="mobile-menu-drawer" id="mobile-menu">
+            <button class="absolute top-6 right-6 p-2" id="mobile-menu-close">
+                <i data-lucide="x" class="w-6 h-6 text-gray-700"></i>
+            </button>
+            <div class="space-y-2">
+                <a href="#home" class="block py-3 px-4 text-gray-700 hover:text-purple-600 hover:bg-purple-50 transition-all font-medium rounded-lg">Home</a>
+                <a href="#services" class="block py-3 px-4 text-gray-700 hover:text-purple-600 hover:bg-purple-50 transition-all font-medium rounded-lg">Services</a>
+                <a href="#process" class="block py-3 px-4 text-gray-700 hover:text-purple-600 hover:bg-purple-50 transition-all font-medium rounded-lg">Process</a>
+                <a href="#testimonials" class="block py-3 px-4 text-gray-700 hover:text-purple-600 hover:bg-purple-50 transition-all font-medium rounded-lg">Testimonials</a>
+                <a href="#contact" class="block py-3 px-4 text-gray-700 hover:text-purple-600 hover:bg-purple-50 transition-all font-medium rounded-lg">Contact</a>
             </div>
         </div>
+        <div class="hidden md:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-[999]" id="mobile-menu-overlay"></div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="gradient-bg md:min-h-screen flex items-start md:items-center justify-center text-white section-padding mt-14 md:mt-16 relative overflow-hidden">
+    <section id="home" class="gradient-bg md:min-h-screen flex items-start md:items-center justify-center text-white section-padding mt-16 md:mt-20 relative overflow-hidden hero-modern">
         <div class="particles" id="particles"></div>
-        <!-- Background Image for Mobile -->
-        <div class="absolute inset-0 md:hidden opacity-30" 
-             style="background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop'); background-size: cover; background-position: center; background-repeat: no-repeat; z-index: 1;">
-            <div class="absolute inset-0 bg-gradient-to-r from-purple-600/60 via-purple-500/50 to-pink-500/60"></div>
-        </div>
         <div class="container mx-auto px-4 sm:px-6 relative z-10">
-            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start md:items-center">
-                <div data-aos="fade-right" data-aos-duration="1000" class="relative z-10">
-                    <div class="inline-block mb-4 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-sm font-semibold" data-aos="fade-up" data-aos-delay="200">
-                        ✨ Trusted by 500+ Clients Worldwide
-                    </div>
-                    <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight hero-text text-center md:text-left">
-                        Your Journey<br/>
-                        <span class="gradient-text" style="-webkit-text-fill-color: white;">Starts Here</span>
+            <!-- Mobile Layout: Image Top, Content Middle, Buttons Bottom -->
+            <div class="flex flex-col md:hidden">
+                
+                <!-- Content at the top for Mobile -->
+                <div class="flex-1" data-aos="fade-up">
+                    <h1 class="text-4xl sm:text-5xl font-black mb-6 leading-[1.1] text-center">
+                        <span class="block">Your Journey</span>
+                        <span class="block gradient-text-modern mt-2" style="-webkit-text-fill-color: white;">Starts Here</span>
                     </h1>
-                    <p class="text-base sm:text-lg md:text-2xl mb-8 text-gray-100 leading-relaxed text-center md:text-left" data-aos="fade-up" data-aos-delay="300">
+                    <p class="text-lg sm:text-xl mb-8 text-gray-100 leading-relaxed text-center">
                         Expert guidance for education, visas, travel, and beyond. We make your dreams accessible with personalized service and proven results.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4 items-center sm:items-stretch" data-aos="fade-up" data-aos-delay="400">
-                        <a href="#services" class="btn-glow bg-white text-purple-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-2xl text-center relative overflow-hidden w-full sm:w-auto">
-                            <span class="relative z-10">Explore Services</span>
+                    <div class="grid grid-cols-3 gap-4 mb-8">
+                        <div class="stat-card text-center">
+                            <div class="text-3xl font-black gradient-text-modern mb-2" style="-webkit-text-fill-color: white;">98%</div>
+                            <div class="text-xs text-gray-200 font-medium">Success Rate</div>
+                        </div>
+                        <div class="stat-card text-center">
+                            <div class="text-3xl font-black gradient-text-modern mb-2" style="-webkit-text-fill-color: white;">500+</div>
+                            <div class="text-xs text-gray-200 font-medium">Happy Clients</div>
+                        </div>
+                        <div class="stat-card text-center">
+                            <div class="text-3xl font-black gradient-text-modern mb-2" style="-webkit-text-fill-color: white;">50+</div>
+                            <div class="text-xs text-gray-200 font-medium">Countries</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image at Top for Mobile -->
+                <div class="relative w-full rounded-3xl overflow-hidden mb-8 shadow-2xl" data-aos="fade-down">
+                    <div class="relative w-full h-[350px] sm:h-[400px]">
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=820&fit=crop" 
+                             alt="Students studying and traveling" 
+                             class="w-full h-full object-cover object-center"
+                             loading="eager">
+                        <div class="absolute inset-0 bg-gradient-to-t from-purple-600/30 via-purple-500/20 to-transparent"></div>
+                    </div>
+                    <!-- Trusted Badge Below Image -->
+                    <div class="bg-white/10 backdrop-blur-md px-5 py-3 rounded-b-3xl">
+                        <div class="inline-flex items-center gap-2 px-5 py-2.5 glass rounded-full text-sm font-semibold backdrop-blur-md mx-auto block w-fit">
+                            <span>✨</span>
+                            <span>Trusted by 500+ Clients Worldwide</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Buttons at Bottom for Mobile -->
+                <div class="flex gap-4" data-aos="fade-up" data-aos-delay="200">
+                    <a href="#services" class="flex-1 btn-modern bg-white text-purple-600 px-6 py-4 rounded-2xl font-bold hover:bg-gray-50 transition-all transform hover:scale-105 shadow-2xl text-center relative overflow-hidden">
+                        <span class="relative z-10 flex items-center justify-center gap-2">
+                            <span>Explore Services</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </a>
+                    <a href="#contact" class="flex-1 btn-modern glass border-2 border-white/30 text-white px-6 py-4 rounded-2xl font-bold hover:bg-white/10 transition-all transform hover:scale-105 text-center relative overflow-hidden">
+                        <span class="relative z-10">Get Started</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Desktop Layout: Side by Side -->
+            <div class="hidden md:grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+                <div data-aos="fade-right" data-aos-duration="1000" class="relative z-10">
+                    <div class="inline-flex items-center gap-2 mb-6 px-5 py-2.5 glass rounded-full text-sm font-semibold backdrop-blur-md" data-aos="fade-up" data-aos-delay="200">
+                        <span>✨</span>
+                        <span>Trusted by 500+ Clients Worldwide</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-[1.1] text-left">
+                        <span class="block">Your Journey</span>
+                        <span class="block gradient-text-modern mt-2" style="-webkit-text-fill-color: white;">Starts Here</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl md:text-2xl mb-10 text-gray-100 leading-relaxed text-left max-w-xl" data-aos="fade-up" data-aos-delay="300">
+                        Expert guidance for education, visas, travel, and beyond. We make your dreams accessible with personalized service and proven results.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 items-center sm:items-stretch mb-12" data-aos="fade-up" data-aos-delay="400">
+                        <a href="#services" class="btn-modern bg-white text-purple-600 px-10 py-5 rounded-2xl font-bold hover:bg-gray-50 transition-all transform hover:scale-105 shadow-2xl text-center relative overflow-hidden w-full sm:w-auto min-w-[200px]">
+                            <span class="relative z-10 flex items-center justify-center gap-2">
+                                <span>Explore Services</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </span>
                         </a>
-                        <a href="#contact" class="btn-glow bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-purple-600 transition-all transform hover:scale-105 text-center relative overflow-hidden w-full sm:w-auto">
+                        <a href="#contact" class="btn-modern glass border-2 border-white/30 text-white px-10 py-5 rounded-2xl font-bold hover:bg-white/10 transition-all transform hover:scale-105 text-center relative overflow-hidden w-full sm:w-auto min-w-[200px]">
                             <span class="relative z-10">Get Started</span>
                         </a>
                     </div>
-                    <div class="mt-8 sm:mt-10 flex flex-wrap items-center gap-6 sm:gap-8 justify-center md:justify-start" data-aos="fade-up" data-aos-delay="500">
-                        <div>
-                            <div class="text-3xl font-bold">98%</div>
-                            <div class="text-sm text-gray-200">Success Rate</div>
+                    <div class="grid grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="500">
+                        <div class="stat-card text-center">
+                            <div class="text-4xl md:text-5xl font-black gradient-text-modern mb-2" style="-webkit-text-fill-color: white;">98%</div>
+                            <div class="text-sm text-gray-200 font-medium">Success Rate</div>
                         </div>
-                        <div>
-                            <div class="text-3xl font-bold">500+</div>
-                            <div class="text-sm text-gray-200">Happy Clients</div>
+                        <div class="stat-card text-center">
+                            <div class="text-4xl md:text-5xl font-black gradient-text-modern mb-2" style="-webkit-text-fill-color: white;">500+</div>
+                            <div class="text-sm text-gray-200 font-medium">Happy Clients</div>
                         </div>
-                        <div>
-                            <div class="text-3xl font-bold">50+</div>
-                            <div class="text-sm text-gray-200">Countries</div>
+                        <div class="stat-card text-center">
+                            <div class="text-4xl md:text-5xl font-black gradient-text-modern mb-2" style="-webkit-text-fill-color: white;">50+</div>
+                            <div class="text-sm text-gray-200 font-medium">Countries</div>
                         </div>
                     </div>
                 </div>
                 <!-- Background Image for Desktop -->
-                <div class="hidden md:block float-animation relative min-h-[500px] rounded-3xl overflow-hidden shadow-2xl" 
-                     style="background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop'); background-size: cover; background-position: center; background-repeat: no-repeat;"
+                <div class="hidden md:block float-enhanced relative min-h-[600px] rounded-[32px] overflow-hidden shadow-2xl" 
                      data-aos="fade-left" data-aos-duration="1000"
                      aria-label="Students studying and traveling">
-                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-purple-500/10 to-pink-500/20"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=830&fit=crop" 
+                         alt="Students studying and traveling" 
+                         class="w-full h-[600px] object-cover object-center"
+                         loading="eager">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600/10 via-purple-500/5 to-pink-500/10"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent"></div>
                 </div>
             </div>
         </div>
+        <div class="scroll-indicator hidden md:block"></div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="section-padding bg-white relative">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-12 sm:mb-16" data-aos="fade-up">
-                <div class="inline-block mb-4 px-4 py-2 bg-purple-100 text-purple-600 rounded-full text-sm font-semibold">
-                    Our Services
+    <section id="services" class="section-padding bg-gradient-to-b from-white to-gray-50 relative">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16 md:mb-20" data-aos="fade-up">
+                <div class="inline-flex items-center gap-2 mb-6 px-5 py-2.5 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-600 rounded-full text-sm font-semibold">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    <span>Our Services</span>
                 </div>
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 sm:mb-6 gradient-text">What We Offer</h2>
-                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-black mb-6 gradient-text-modern">What We Offer</h2>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                     Comprehensive solutions designed to make your educational and travel journey seamless, stress-free, and successful
                 </p>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Educational Consultant -->
-                <div class="service-card bg-gradient-to-br from-purple-50 via-indigo-50 to-purple-50 rounded-3xl p-0 shadow-xl border border-purple-100 overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=400&fit=crop" 
-                         alt="Educational consulting" 
-                         class="service-image"
-                         loading="lazy">
+                <div class="modern-card service-card relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=400&fit=crop" 
+                             alt="Educational consulting" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                             loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-purple-600/80 to-transparent"></div>
+                    </div>
                     <div class="p-8">
-                        <div class="service-icon bg-gradient-to-br from-purple-500 to-indigo-600 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <div class="service-icon-modern bg-gradient-to-br from-purple-500 to-indigo-600 mb-6 mx-auto">
                             <i data-lucide="graduation-cap" class="w-10 h-10 text-white"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Educational Consultant</h3>
-                    <p class="text-gray-600 leading-relaxed mb-6">
-                        Expert guidance on course selection, university applications, and academic pathways tailored to your career goals and aspirations.
-                    </p>
-                    <ul class="space-y-2 text-sm text-gray-500">
-                        <li class="flex items-center gap-2">
-                            <i data-lucide="check" class="w-4 h-4 text-purple-600"></i>
-                            University selection
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i data-lucide="check" class="w-4 h-4 text-purple-600"></i>
-                            Application assistance
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i data-lucide="check" class="w-4 h-4 text-purple-600"></i>
-                            Scholarship guidance
-                        </li>
-                    </ul>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800 text-center">Educational Consultant</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6 text-center">
+                            Expert guidance on course selection, university applications, and academic pathways tailored to your career goals.
+                        </p>
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-purple-600"></i>
+                                </div>
+                                <span>University selection</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-purple-600"></i>
+                                </div>
+                                <span>Application assistance</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-purple-600"></i>
+                                </div>
+                                <span>Scholarship guidance</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
                 <!-- Visa Processing -->
-                <div class="service-card bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-50 rounded-3xl p-0 shadow-xl border border-blue-100 overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop" 
-                         alt="Visa processing" 
-                         class="service-image"
-                         loading="lazy">
+                <div class="modern-card service-card relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop" 
+                             alt="Visa processing" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                             loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-600/80 to-transparent"></div>
+                    </div>
                     <div class="p-8">
-                        <div class="service-icon bg-gradient-to-br from-blue-500 to-cyan-600 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <div class="service-icon-modern bg-gradient-to-br from-blue-500 to-cyan-600 mb-6 mx-auto">
                             <i data-lucide="file-check" class="w-10 h-10 text-white"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Visa Processing</h3>
-                        <p class="text-gray-600 leading-relaxed mb-6">
-                            Streamlined visa application assistance with comprehensive document preparation, submission support, and dedicated follow-up services.
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800 text-center">Visa Processing</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6 text-center">
+                            Streamlined visa application assistance with comprehensive document preparation and submission support.
                         </p>
-                        <ul class="space-y-2 text-sm text-gray-500">
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-4 h-4 text-blue-600"></i>
-                                Document preparation
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-600"></i>
+                                </div>
+                                <span>Document preparation</span>
                             </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-4 h-4 text-blue-600"></i>
-                                Application submission
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-600"></i>
+                                </div>
+                                <span>Application submission</span>
                             </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-4 h-4 text-blue-600"></i>
-                                Status tracking
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-600"></i>
+                                </div>
+                                <span>Status tracking</span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Flight Booking -->
-                <div class="service-card bg-gradient-to-br from-green-50 via-emerald-50 to-green-50 rounded-3xl p-0 shadow-xl border border-green-100 overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&h=400&fit=crop" 
-                         alt="Flight booking" 
-                         class="service-image"
-                         loading="lazy">
+                <div class="modern-card service-card relative" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&h=400&fit=crop" 
+                             alt="Flight booking" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                             loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-green-600/80 to-transparent"></div>
+                    </div>
                     <div class="p-8">
-                        <div class="service-icon bg-gradient-to-br from-green-500 to-emerald-600 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <div class="service-icon-modern bg-gradient-to-br from-green-500 to-emerald-600 mb-6 mx-auto">
                             <i data-lucide="plane" class="w-10 h-10 text-white"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Flight Booking</h3>
-                        <p class="text-gray-600 leading-relaxed mb-6">
-                            Best deals on international flights with flexible options, comprehensive travel insurance, and round-the-clock support for your journey.
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800 text-center">Flight Booking</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6 text-center">
+                            Best deals on international flights with flexible options and comprehensive travel insurance.
                         </p>
-                        <ul class="space-y-2 text-sm text-gray-500">
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
-                                Best price guarantee
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
+                                </div>
+                                <span>Best price guarantee</span>
                             </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
-                                Flexible dates
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
+                                </div>
+                                <span>Flexible dates</span>
                             </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
-                                Travel insurance
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-600"></i>
+                                </div>
+                                <span>Travel insurance</span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Accommodation Booking -->
-                <div class="service-card bg-gradient-to-br from-orange-50 via-amber-50 to-orange-50 rounded-3xl p-0 shadow-xl border border-orange-100 overflow-hidden" data-aos="fade-up" data-aos-delay="400">
-                    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600&h=400&fit=crop" 
-                         alt="Accommodation booking" 
-                         class="service-image"
-                         loading="lazy">
+                <div class="modern-card service-card relative" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600&h=400&fit=crop" 
+                             alt="Accommodation booking" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                             loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-orange-600/80 to-transparent"></div>
+                    </div>
                     <div class="p-8">
-                        <div class="service-icon bg-gradient-to-br from-orange-500 to-amber-600 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <div class="service-icon-modern bg-gradient-to-br from-orange-500 to-amber-600 mb-6 mx-auto">
                             <i data-lucide="home" class="w-10 h-10 text-white"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Accommodation Booking</h3>
-                        <p class="text-gray-600 leading-relaxed mb-6">
-                            Find the perfect place to stay with verified listings, student-friendly options, and convenient locations near your institution.
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800 text-center">Accommodation Booking</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6 text-center">
+                            Find the perfect place to stay with verified listings and student-friendly options.
                         </p>
-                        <ul class="space-y-2 text-sm text-gray-500">
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-4 h-4 text-orange-600"></i>
-                                Verified properties
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-orange-600"></i>
+                                </div>
+                                <span>Verified properties</span>
                             </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-4 h-4 text-orange-600"></i>
-                                Student discounts
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-orange-600"></i>
+                                </div>
+                                <span>Student discounts</span>
                             </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-4 h-4 text-orange-600"></i>
-                                Prime locations
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-orange-600"></i>
+                                </div>
+                                <span>Prime locations</span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Appointment Date Search -->
-                <div class="service-card bg-gradient-to-br from-pink-50 via-rose-50 to-pink-50 rounded-3xl p-0 shadow-xl border border-pink-100 overflow-hidden" data-aos="fade-up" data-aos-delay="500">
-                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop" 
-                         alt="Appointment scheduling" 
-                         class="service-image"
-                         loading="lazy">
+                <div class="modern-card service-card relative" data-aos="fade-up" data-aos-delay="500">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop" 
+                             alt="Appointment scheduling" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                             loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-pink-600/80 to-transparent"></div>
+                    </div>
                     <div class="p-8">
-                        <div class="service-icon bg-gradient-to-br from-pink-500 to-rose-600 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <div class="service-icon-modern bg-gradient-to-br from-pink-500 to-rose-600 mb-6 mx-auto">
                             <i data-lucide="calendar-search" class="w-10 h-10 text-white"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Appointment Date Search</h3>
-                        <p class="text-gray-600 leading-relaxed mb-6">
-                            We continuously monitor and help you secure the earliest available appointment dates for embassies and consulates worldwide.
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800 text-center">Appointment Date Search</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6 text-center">
+                            We monitor and help you secure the earliest available appointment dates for embassies worldwide.
                         </p>
-                        <ul class="space-y-2 text-sm text-gray-500">
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-4 h-4 text-pink-600"></i>
-                                Real-time monitoring
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-pink-600"></i>
+                                </div>
+                                <span>Real-time monitoring</span>
                             </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-4 h-4 text-pink-600"></i>
-                                Instant notifications
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-pink-600"></i>
+                                </div>
+                                <span>Instant notifications</span>
                             </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-4 h-4 text-pink-600"></i>
-                                Priority booking
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-pink-600"></i>
+                                </div>
+                                <span>Priority booking</span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- 24/7 Support -->
-                <div class="service-card bg-gradient-to-br from-indigo-50 via-purple-50 to-indigo-50 rounded-3xl p-0 shadow-xl border border-indigo-100 overflow-hidden" data-aos="fade-up" data-aos-delay="600">
-                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=400&fit=crop" 
-                         alt="Customer support" 
-                         class="service-image"
-                         loading="lazy">
+                <div class="modern-card service-card relative" data-aos="fade-up" data-aos-delay="600">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=400&fit=crop" 
+                             alt="Customer support" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                             loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-indigo-600/80 to-transparent"></div>
+                    </div>
                     <div class="p-8">
-                        <div class="service-icon bg-gradient-to-br from-indigo-500 to-purple-600 w-20 h-20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <div class="service-icon-modern bg-gradient-to-br from-indigo-500 to-purple-600 mb-6 mx-auto">
                             <i data-lucide="headphones" class="w-10 h-10 text-white"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4 text-gray-800">24/7 Support</h3>
-                        <p class="text-gray-600 leading-relaxed mb-6">
-                            Round-the-clock assistance for all your queries and concerns throughout your entire journey, whenever you need us.
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800 text-center">24/7 Support</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6 text-center">
+                            Round-the-clock assistance for all your queries and concerns throughout your entire journey.
                         </p>
-                        <ul class="space-y-2 text-sm text-gray-500">
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-4 h-4 text-indigo-600"></i>
-                                Always available
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-indigo-600"></i>
+                                </div>
+                                <span>Always available</span>
                             </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-4 h-4 text-indigo-600"></i>
-                                Multi-language support
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-indigo-600"></i>
+                                </div>
+                                <span>Multi-language support</span>
                             </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-4 h-4 text-indigo-600"></i>
-                                Quick response
+                            <li class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4 text-indigo-600"></i>
+                                </div>
+                                <span>Quick response</span>
                             </li>
                         </ul>
                     </div>
@@ -1122,8 +1617,8 @@
                     </p>
                 </div>
                 
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div class="space-y-6" data-aos="fade-right">
+                <div class="max-w-2xl mx-auto">
+                    <div class="grid md:grid-cols-2 gap-6" data-aos="fade-up">
                         <div class="mb-6">
                             <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=600&h=400&fit=crop" 
                                  alt="Contact us" 
@@ -1174,40 +1669,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-3xl p-8 border border-green-100 shadow-lg hover:shadow-xl transition-shadow">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-4 shadow-lg">
+                                    <i data-lucide="message-circle" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-800">WhatsApp</h4>
+                                    <a href="https://wa.me/1234567890" target="_blank" class="text-gray-600 hover:text-green-600 transition-colors">+1 (555) 123-4567</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <form class="space-y-6" data-aos="fade-left" id="contact-form">
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Your Name</label>
-                            <input type="text" required placeholder="John Doe" class="form-input w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-all">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Your Email</label>
-                            <input type="email" required placeholder="john@example.com" class="form-input w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-all">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
-                            <input type="tel" placeholder="+1 (555) 123-4567" class="form-input w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-all">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Service Interested In</label>
-                            <select class="form-input w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-all">
-                                <option>Educational Consulting</option>
-                                <option>Visa Processing</option>
-                                <option>Flight Booking</option>
-                                <option>Accommodation Booking</option>
-                                <option>Appointment Date Search</option>
-                                <option>Multiple Services</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Your Message</label>
-                            <textarea placeholder="Tell us about your needs..." rows="5" required class="form-input w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-all resize-none"></textarea>
-                        </div>
-                        <button type="submit" class="btn-glow w-full gradient-bg text-white px-8 py-5 rounded-xl font-bold hover:opacity-90 transition-all transform hover:scale-105 shadow-2xl relative overflow-hidden">
-                            <span class="relative z-10">Send Message</span>
-                        </button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -1216,7 +1689,7 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-16">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-12 mb-12">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
                 <div>
                     <h3 class="text-3xl font-bold mb-4 gradient-text" style="-webkit-text-fill-color: white;">Chioma</h3>
                     <p class="text-gray-400 leading-relaxed mb-6">
@@ -1255,16 +1728,6 @@
                         <li><a href="#services" class="hover:text-white transition-colors flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Flight Booking</a></li>
                         <li><a href="#services" class="hover:text-white transition-colors flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Accommodation</a></li>
                     </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-6">Newsletter</h4>
-                    <p class="text-gray-400 mb-4">Subscribe to get updates and special offers</p>
-                    <form class="space-y-3">
-                        <input type="email" placeholder="Your email" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-purple-500 transition-colors">
-                        <button type="submit" class="w-full gradient-bg text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-all">
-                            Subscribe
-                        </button>
-                    </form>
                 </div>
             </div>
             <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
@@ -1331,19 +1794,31 @@
             }
         });
 
-        // Mobile menu toggle
+        // Mobile menu toggle - Drawer style
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
         
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            const icon = mobileMenuBtn.querySelector('i');
-            if (mobileMenu.classList.contains('hidden')) {
-                icon.setAttribute('data-lucide', 'menu');
-            } else {
-                icon.setAttribute('data-lucide', 'x');
-            }
-            lucide.createIcons();
+        function openMobileMenu() {
+            mobileMenu.classList.add('open');
+            mobileMenuOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            mobileMenuOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        
+        // Close menu when clicking on links
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
         });
 
         // Smooth scroll for anchor links
@@ -1381,36 +1856,36 @@
         }
         createParticles();
 
-        // Form submission
-        document.getElementById('contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const form = e.target;
-            const button = form.querySelector('button[type="submit"]');
-            const originalText = button.innerHTML;
-            
-            button.innerHTML = '<span class="relative z-10">Sending...</span>';
-            button.disabled = true;
-            
-            setTimeout(() => {
-                button.innerHTML = '<span class="relative z-10">✓ Message Sent!</span>';
-                button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-                
-                setTimeout(() => {
-                    form.reset();
-                    button.innerHTML = originalText;
-                    button.disabled = false;
-                    button.style.background = '';
-                    alert('Thank you for your message! We will get back to you soon.');
-                }, 2000);
-            }, 1500);
-        });
+        // Form submission - Commented Out (Form Removed)
+        // document.getElementById('contact-form').addEventListener('submit', (e) => {
+        //     e.preventDefault();
+        //     const form = e.target;
+        //     const button = form.querySelector('button[type="submit"]');
+        //     const originalText = button.innerHTML;
+        //     
+        //     button.innerHTML = '<span class="relative z-10">Sending...</span>';
+        //     button.disabled = true;
+        //     
+        //     setTimeout(() => {
+        //         button.innerHTML = '<span class="relative z-10">✓ Message Sent!</span>';
+        //         button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+        //         
+        //         setTimeout(() => {
+        //             form.reset();
+        //             button.innerHTML = originalText;
+        //             button.disabled = false;
+        //             button.style.background = '';
+        //             alert('Thank you for your message! We will get back to you soon.');
+        //         }, 2000);
+        //     }, 1500);
+        // });
 
-        // Newsletter form
-        document.querySelector('footer form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for subscribing!');
-            e.target.reset();
-        });
+        // Newsletter form - Commented Out
+        // document.querySelector('footer form').addEventListener('submit', (e) => {
+        //     e.preventDefault();
+        //     alert('Thank you for subscribing!');
+        //     e.target.reset();
+        // });
 
         // Counter Animation for Stats
         function animateCounter(element, target, duration = 2000) {
